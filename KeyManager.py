@@ -18,11 +18,11 @@ print(key2)
 key3 = b'Sixteen byte key'
 aes = AES.new(key3, AES.MODE_ECB)
 host = socket.gethostname()
-port = 5001  # initiate port no above 1024
-server_socket = socket.socket()  # get instance
-server_socket.bind((host, port))  # bind host address and port together
+port = 5001 
+server_socket = socket.socket()  
+server_socket.bind((host, port))  
 server_socket.listen(2)
-conn, address = server_socket.accept()  # accept new connection
+conn, address = server_socket.accept()  
 
 while True:
     keytype = conn.recv(1024).decode()
@@ -43,4 +43,4 @@ while True:
 
 
 
-conn.close()  # close the connection
+conn.close()

@@ -1,0 +1,10 @@
+Implementati o infrastructura de comunicatie ce foloseste AES pentru criptarea traficului intre doua noduri A si B
+cu urmatoarele caracteristici: Context de initializare. Se considera un nod KM (key manager) care detine trei chei K1,
+ K2 si K3. K1 este asociata cu modul de operare CBC. K2 este asociata cu modul de operare OFB. K3 este utilizata pentru
+  criptarea cheilor K1 si K2. K3 este de asemenea detinuta din start si de nodurile A si B. Faza de initializare
+  - Schimbul de chei. Pentru a initia o sesiune de comunicare securizata nodul A trimite un mesaj catre B in care comunica
+  modul de operare (CBC sau OFB) si similar cere nodului KM cheia corespunzatoare. Cheia ceruta (K1 sau K2 in functie de
+  modul de operare) este criptata ca un singur bloc cu AES de KM folosind cheia K3 si trimisa ca raspuns nodului A, ce o
+  va trimite mai departe nodului B. A si B vor decripta cheia (K1 sau K2) la primire pentru a incepe comunicarea.
+Faza de transport - Comunicare securizata. Dupa ce trimite cheile catre B, nodul A incepe sa trimita catre B continutul
+unui fisier criptat pe blocuri folosind modul selectat.

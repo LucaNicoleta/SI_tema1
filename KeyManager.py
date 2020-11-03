@@ -28,19 +28,27 @@ while True:
     keytype = conn.recv(1024).decode()
     print(keytype)
     if keytype == 'CBC':
+
+        iv = get_random_bytes(AES.block_size)
+        key1 = get_random_bytes(AES.block_size)
+        print(iv)
+        print(key1)
         enkey = aes.encrypt(key1)
         eniv = aes.encrypt(iv)
         conn.send(enkey)
         conn.send(eniv)
     else:
         if keytype == 'OFB':
+
+            iv = get_random_bytes(AES.block_size)
+            key2 = get_random_bytes(AES.block_size)
+            print(iv)
+            print(key2)
             enkey = aes.encrypt(key2)
             eniv = aes.encrypt(iv)
             conn.send(enkey)
             conn.send(eniv)
         else:
             conn.send(b'Optiune gresita')
-
-
 
 conn.close()
